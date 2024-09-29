@@ -133,3 +133,6 @@ npx prisma execute
 
 Posso tentar criar um prisma client para o Rating. 
 httpie
+
+{} --> executa 
+() --> retorna, ou parâmetro.
