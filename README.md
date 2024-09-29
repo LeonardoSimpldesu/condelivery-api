@@ -126,3 +126,7 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - MORADOR
 - COLABORADOR
 - created_at
+
+
+npx prisma db seed 
+npx prisma execute 

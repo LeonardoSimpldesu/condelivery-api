@@ -8,41 +8,77 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
+model Apartement {
+  id     Int    @id @default(autoincrement())
+  number String
 
-  @@map("users")
+  // Relationships 
+
+  // One To Many 
+  moradores Morador[]
+
+  @@map("apartments")
+}
+
+model Morador {
+  id        Int    @id @default(autoincrement())
+  name      String
+  email     String @unique
+  password  String
+  foto_path String
+  last_name String
+  cpf       String
+  celular   String
+
+  // Relationships 
+
+  // One To One
+  order Order?
+
+  // One To Many 
+  apartmentId Int
+  apartment   Apartement @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+
+  @@map("moradores")
 }
 
 model Order {
   id          Int    @id @default(autoincrement())
   status      String
   codigo      String
-  morador     String // create relationship for it
-  colaborador String // create relationship for it 
   created_at  String // is it string? 
-  description String 
-  // dataDaEntrega 
-  // a nossa aplicacao precisa saber do item do pedido? Não precisa 
+  description String
+
+  // Relationships 
+
+  // One To One 
+  collaboratorId Int          @unique
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade) // create relationship for it 
+
+  // One To One
+  moradorId Int     @unique
+  morador   Morador @relation(fields: [moradorId], references: [id], onDelete: Cascade) // create relationship for it
 
   @@map("orders")
 }
 
-model Collaborator { 
-  id Int @id @default(autoincrement())
-  // nome 
-  // quantidadeDeEntregas
-  // avaliacaoMedia 
-  // qtdAvaliacao 
-  // tempoDeAtuacao 
-  // destaquesColaborador
-  // notasAgradecimentos 
-  // idiomas
-  // local
-  // servicosPrestados 
+model Collaborator {
+  id               Int    @id @default(autoincrement())
+  nome             String
+  countDeliveries  Int
+  mediaRating      Float
+  countRating      Int
+  operatingTime    Int
+  tags             String
+  thanksNotes      String
+  languages        String
+  local            String
+  servicesProvided String
+
+  // Relationships 
+
+  // One To One 
+  order Order?
 
   @@map("collaborators")
 }

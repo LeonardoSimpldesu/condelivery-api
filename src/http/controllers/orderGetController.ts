@@ -7,6 +7,20 @@ export async function orderGetController(request: FastifyRequest, reply: Fastify
         const x = await prisma.order.findMany({
             where: {
                 id: { gt: 0 }
+            }, 
+            select: {
+                id: true,
+                status: true, 
+                codigo: true, 
+                morador: true, 
+                collaboratorId: true, 
+                created_at: true, 
+                description: true,
+                collaborator: {
+                    select: { 
+                        nome: true
+                    }
+                }
             }
         })
 
