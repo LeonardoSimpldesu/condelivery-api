@@ -126,3 +126,5 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - MORADOR
 - COLABORADOR
 - created_at
+
+Moquei dados na gambiarra apenas para apresentar no pitch. Aqui estará o relacionamento correto. 

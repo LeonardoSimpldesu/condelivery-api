@@ -24,6 +24,25 @@ model Order {
   morador     String // create relationship for it
   colaborador String // create relationship for it 
   created_at  String // is it string? 
+  description String 
+  // dataDaEntrega 
+  // a nossa aplicacao precisa saber do item do pedido? Não precisa 
 
   @@map("orders")
+}
+
+model Collaborator { 
+  id Int @id @default(autoincrement())
+  // nome 
+  // quantidadeDeEntregas
+  // avaliacaoMedia 
+  // qtdAvaliacao 
+  // tempoDeAtuacao 
+  // destaquesColaborador
+  // notasAgradecimentos 
+  // idiomas
+  // local
+  // servicosPrestados 
+
+  @@map("collaborators")
 }

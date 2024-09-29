@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { userCreateController } from "./http/controllers/userCreateController";
+import { orderGetController } from "./http/controllers/orderGetController";
 
 interface IBody {
   username: string;
@@ -13,4 +14,5 @@ export async function appRoutes(app: FastifyInstance) {
   }))
 
   app.post('/create-user', userCreateController)
+  app.get('/get-order', orderGetController)
 }

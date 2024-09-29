@@ -6,6 +6,7 @@ CREATE TABLE "orders" (
     "morador" TEXT NOT NULL,
     "colaborador" TEXT NOT NULL,
     "created_at" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
 
     CONSTRAINT "orders_pkey" PRIMARY KEY ("id")
 );
