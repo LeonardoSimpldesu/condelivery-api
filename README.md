@@ -130,3 +130,6 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 
 npx prisma db seed 
 npx prisma execute 
+
+Posso tentar criar um prisma client para o Rating. 
+httpie

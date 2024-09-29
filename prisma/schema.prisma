@@ -15,20 +15,83 @@ model Apartement {
   // Relationships 
 
   // One To Many 
-  moradores Morador[]
+  residents Resident[]
 
   @@map("apartments")
 }
 
-model Morador {
-  id        Int    @id @default(autoincrement())
-  name      String
-  email     String @unique
-  password  String
-  foto_path String
-  last_name String
-  cpf       String
-  celular   String
+model Collaborator {
+  id                    Int    @id @default(autoincrement())
+  name                  String
+  countDeliveries       Int
+  mediaRating           Float
+  countRating           Int
+  operatingTimeInMonths Int
+  tags                  String
+  languages             String
+  local                 String
+  servicesProvided      String
+
+  // Relationships 
+
+  // One To One 
+  order Order?
+
+  // One To May 
+  ratings Rating[]
+
+  @@map("collaborators")
+}
+
+model Order {
+  id          Int    @id @default(autoincrement())
+  code        String
+  created_at  String // is it string? 
+  description String
+  status      String
+
+  // Relationships 
+
+  // One To One 
+  collaboratorId Int          @unique
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade) // create relationship for it 
+
+  rating Rating?
+
+  // One To One
+  residentId Int      @unique
+  resident   Resident @relation(fields: [residentId], references: [id], onDelete: Cascade) // create relationship for it
+
+  @@map("orders")
+}
+
+model Rating {
+  id Int @id @default(autoincrement())
+  ratingNote Int 
+  recommendations String?
+
+  // Relationships 
+
+  // One To One 
+  orderId Int @unique
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  // One To Many 
+  collaboratorId Int
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade)
+
+  @@map("ratings")
+}
+
+model Resident {
+  id         Int    @id @default(autoincrement())
+  email      String @unique
+  cell       String
+  cpf        String
+  last_name  String
+  name       String
+  password   String
+  photo_path String
 
   // Relationships 
 
@@ -39,46 +102,5 @@ model Morador {
   apartmentId Int
   apartment   Apartement @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
 
-  @@map("moradores")
-}
-
-model Order {
-  id          Int    @id @default(autoincrement())
-  status      String
-  codigo      String
-  created_at  String // is it string? 
-  description String
-
-  // Relationships 
-
-  // One To One 
-  collaboratorId Int          @unique
-  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade) // create relationship for it 
-
-  // One To One
-  moradorId Int     @unique
-  morador   Morador @relation(fields: [moradorId], references: [id], onDelete: Cascade) // create relationship for it
-
-  @@map("orders")
-}
-
-model Collaborator {
-  id               Int    @id @default(autoincrement())
-  nome             String
-  countDeliveries  Int
-  mediaRating      Float
-  countRating      Int
-  operatingTime    Int
-  tags             String
-  thanksNotes      String
-  languages        String
-  local            String
-  servicesProvided String
-
-  // Relationships 
-
-  // One To One 
-  order Order?
-
-  @@map("collaborators")
+  @@map("residents")
 }

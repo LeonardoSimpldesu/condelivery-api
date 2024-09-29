@@ -5,55 +5,60 @@ async function main() {
     await prisma.order.create({
         data: {
             status: 'Em rota',
-            codigo: '1450',
-            morador: {
+            code: '1450',
+            created_at: '29-09-2024',
+            description: 'Ifood - Restaurante Sabor Caseiro',
+
+            // Relationships Instances
+            resident: {
                 create: { 
                     name: 'Elizabeth',
                     email: 'elizabetholiveira@prisma.io',
                     password: '12345678',
-                    foto_path: '',
+                    photo_path: '',
                     last_name: 'Oliveira',
                     cpf : '67893756341',
-                    celular: '(11) 940393837',
+                    cell: '(11) 940393837',
                     apartment: { 
                         create: { 
                             number: '75', 
                         }
                     }
-                }
+                }, 
+                
             },
             collaborator: {
                 create: {
-                    nome: 'Alyny Plaza',
+                    name: 'Alyny Plaza',
                     countDeliveries: 17,
                     mediaRating: 0,
                     countRating: 10,
-                    operatingTime: 2,
+                    operatingTimeInMonths: 2,
                     tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
-                    thanksNotes: 'EXCELENTE! Me ajudou e muito! Recomendo!',
                     languages: 'Português',
                     local: 'São Paulo',
-                    servicesProvided: 'Sorveteiro; Desenvolvedor;'
+                    servicesProvided: 'Sorveteiro; Desenvolvedor;',
                 },
             },
-            created_at: '29-09-2024',
-            description: 'Ifood - Restaurante Sabor Caseiro'
+
+            // Como mocar o rating aqui no seed? 
+            
         },
     })
 
     await prisma.order.create({
         data: {
             status: 'Em rota',
-            codigo: '1451',
-            morador: {
+            code: '1451',
+            resident: {
                 create: { 
                     name: 'Ana Beatriz Lisboa',
                     email: 'anabeatrizlisboa@prisma.io',
                     password: '12345678',
-                    foto_path: '',
+                    photo_path: '',
                     last_name: 'Lisboa',
                     cpf : '76593701235',
-                    celular: '(11) 970702327',
+                    cell: '(11) 970702327',
                     apartment: { 
                         create: { 
                             number: '26', 
@@ -63,13 +68,12 @@ async function main() {
             },
             collaborator: {
                 create: {
-                    nome: 'Luciano Alves',
+                    name: 'Luciano Alves',
                     countDeliveries: 34,
                     mediaRating: 0,
                     countRating: 34,
-                    operatingTime: 24,
+                    operatingTimeInMonths: 24,
                     tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
-                    thanksNotes: 'EXCELENTE! Me ajudou e muito! Recomendo!',
                     languages: 'Português',
                     local: 'São Paulo',
                     servicesProvided: 'Manuntenção; Desenvolvedor;'
@@ -83,16 +87,16 @@ async function main() {
     await prisma.order.create({
         data: {
             status: 'Aguardando Finalização',
-            codigo: '1730',
-            morador: {
+            code: '1730',
+            resident: {
                 create: { 
                     name: 'Kleber',
                     email: 'kleberlima@prisma.io',
                     password: '7777777',
-                    foto_path: '',
+                    photo_path: '',
                     last_name: 'Lima',
                     cpf : '40387623431',
-                    celular: '(11) 993522897',
+                    cell: '(11) 993522897',
                     apartment: { 
                         create: { 
                             number: '7', 
@@ -102,13 +106,12 @@ async function main() {
             },
             collaborator: {
                 create: {
-                    nome: 'Rogerio Ceni',
+                    name: 'Rogerio Ceni',
                     countDeliveries: 50,
                     mediaRating: 0,
                     countRating: 45,
-                    operatingTime: 2,
+                    operatingTimeInMonths: 2,
                     tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
-                    thanksNotes: 'EXCELENTE! Me ajudou e muito! Recomendo!',
                     languages: 'Português',
                     local: 'São Paulo',
                     servicesProvided: 'Goleiro; Desenvolvedor;'
@@ -122,16 +125,16 @@ async function main() {
     await prisma.order.create({
         data: {
             status: 'Aguardando Finalização',
-            codigo: '1731',
-            morador: {
+            code: '1731',
+            resident: {
                 create: { 
                     name: 'Augusto',
                     email: 'augustoryu@prisma.io',
                     password: '12345678',
-                    foto_path: '',
+                    photo_path: '',
                     last_name: 'Ryu',
                     cpf : '26789367325',
-                    celular: '(11) 998673459',
+                    cell: '(11) 998673459',
                     apartment: { 
                         create: { 
                             number: '31', 
@@ -141,13 +144,12 @@ async function main() {
             },
             collaborator: {
                 create: {
-                    nome: 'Marcelo Oliveira',
+                    name: 'Marcelo Oliveira',
                     countDeliveries: 68,
                     mediaRating: 0,
                     countRating: 66,
-                    operatingTime: 20,
+                    operatingTimeInMonths: 20,
                     tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
-                    thanksNotes: 'EXCELENTE! Me ajudou e muito! Recomendo!',
                     languages: 'Português',
                     local: 'São Paulo',
                     servicesProvided: 'Mecânico; Desenvolvedor;'
@@ -161,16 +163,16 @@ async function main() {
     await prisma.order.create({
         data: {
             status: 'Finalizado',
-            codigo: '2090',
-            morador: {
+            code: '2090',
+            resident: {
                 create: { 
                     name: 'João Tranquilo',
                     email: 'joaotranquilo@prisma.io',
                     password: '12345678',
-                    foto_path: '',
+                    photo_path: '',
                     last_name: 'Tranquilino',
                     cpf : '57890345687',
-                    celular: '(11) 924236908',
+                    cell: '(11) 924236908',
                     apartment: { 
                         create: { 
                             number: '106', 
@@ -180,13 +182,12 @@ async function main() {
             },
             collaborator: {
                 create: {
-                    nome: 'Lucas Gomes',
+                    name: 'Lucas Gomes',
                     countDeliveries: 25,
                     mediaRating: 0,
                     countRating: 24,
-                    operatingTime: 30,
+                    operatingTimeInMonths: 30,
                     tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
-                    thanksNotes: 'EXCELENTE! Me ajudou e muito! Recomendo!',
                     languages: 'Português',
                     local: 'São Paulo',
                     servicesProvided: 'Sorveteiro; Desenvolvedor;'
@@ -200,16 +201,16 @@ async function main() {
     await prisma.order.create({
         data: {
             status: 'Finalizado',
-            codigo: '2091',
-            morador: {
+            code: '2091',
+            resident: {
                 create: { 
                     name: 'Leonardo De',
                     email: 'leonardodesouza@prisma.io',
                     password: '12345678',
-                    foto_path: '',
+                    photo_path: '',
                     last_name: 'Souza',
                     cpf : '12367895634',
-                    celular: '(11) 935899756',
+                    cell: '(11) 935899756',
                     apartment: { 
                         create: { 
                             number: '90', 
@@ -219,13 +220,12 @@ async function main() {
             },
             collaborator: {
                 create: {
-                    nome: 'Ricardo Melquior',
+                    name: 'Ricardo Melquior',
                     countDeliveries: 17,
                     mediaRating: 0,
                     countRating: 10,
-                    operatingTime: 2,
+                    operatingTimeInMonths: 2,
                     tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
-                    thanksNotes: 'EXCELENTE! Me ajudou e muito! Recomendo!',
                     languages: 'Português',
                     local: 'São Paulo',
                     servicesProvided: 'Sorveteiro; Desenvolvedor;'

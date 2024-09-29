@@ -7,17 +7,17 @@ export async function userCreateController(request: FastifyRequest, reply: Fasti
     username: z.string().min(3, { message: 'O nome do usuario deve ter pelo menos 3 caracteres' }),
     email: z.string().email({ message: 'É preciso ser um email valido' }),
     password: z.string().min(3, { message: 'A senha precisa ter pelo menos 3 caracteres' }),
-    foto_path: z.string(),
+    photo_path: z.string(),
     last_name: z.string(),
     cpf: z.string(),
-    celular: z.string(),
+    cell: z.string(),
 
   }, { message: 'Os campos: username, email e password são obrigatórios' })
 
   try {
-    const { username, email, password, foto_path, last_name, cpf, celular } = userCreateBody.parse(request.body);
+    const { username, email, password, photo_path, last_name, cpf, cell } = userCreateBody.parse(request.body);
 
-    const emailAlreadyExists = await prisma.morador.findUnique({
+    const emailAlreadyExists = await prisma.resident.findUnique({
       where: {
         email: email,
       }
@@ -27,15 +27,15 @@ export async function userCreateController(request: FastifyRequest, reply: Fasti
       throw new Error('Este email está sendo utilizado por outro usuário, tente outro email')
     }
 
-    const userData = await prisma.morador.create({
+    const userData = await prisma.resident.create({
       data: {
         name: username,
         email: email,
         password: password,
-        foto_path: foto_path,
+        photo_path: photo_path,
         last_name: last_name,
         cpf: cpf,
-        celular: celular, 
+        cell: cell, 
         apartment: {}
       }
     })

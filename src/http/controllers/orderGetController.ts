@@ -11,14 +11,14 @@ export async function orderGetController(request: FastifyRequest, reply: Fastify
             select: {
                 id: true,
                 status: true, 
-                codigo: true, 
-                morador: true, 
+                code: true, 
+                resident: true, 
                 collaboratorId: true, 
                 created_at: true, 
                 description: true,
                 collaborator: {
                     select: { 
-                        nome: true
+                        name: true
                     }
                 }
             }
