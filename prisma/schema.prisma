@@ -24,7 +24,7 @@ model Collaborator {
   id                    Int    @id @default(autoincrement())
   name                  String
   countDeliveries       Int
-  mediaRating           Float
+  mediaRating           Float ?
   countRating           Int
   operatingTimeInMonths Int
   tags                  String
@@ -35,7 +35,7 @@ model Collaborator {
   // Relationships 
 
   // One To One 
-  order Order?
+  order Order[]
 
   // One To May 
   ratings Rating[]
@@ -53,13 +53,13 @@ model Order {
   // Relationships 
 
   // One To One 
-  collaboratorId Int          @unique
+  collaboratorId Int          
   collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade) // create relationship for it 
 
   rating Rating?
 
   // One To One
-  residentId Int      @unique
+  residentId Int      
   resident   Resident @relation(fields: [residentId], references: [id], onDelete: Cascade) // create relationship for it
 
   @@map("orders")
@@ -96,7 +96,7 @@ model Resident {
   // Relationships 
 
   // One To One
-  order Order?
+  order Order[]
 
   // One To Many 
   apartmentId Int

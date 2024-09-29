@@ -61,7 +61,7 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 
 ## TABELAS
 
-### USERS
+### USERS (x)
 - ID
 - email UNIQUE
 - password_hash
@@ -103,16 +103,16 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - NOME
 - BLOCO
 
-### COLABORADOR 
+### COLABORADOR (x)
 - VALOR_MENSAL
 - AVALIACAO
 - VALOR_EXCEDENTE
 
-### MORADOR
+### MORADOR (x)
 - APARTMENT
 - CONDOMINIUM
 
-### AVALIACAO
+### AVALIACAO (x)
 - ID
 - MORADOR
 - COLABORADOR
