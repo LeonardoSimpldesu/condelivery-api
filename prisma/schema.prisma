@@ -9,10 +9,21 @@ datasource db {
 }
 
 model User {
-  id                 Int               @id @default(autoincrement())
-  name               String
-  email              String               @unique
-  password           String
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
 
   @@map("users")
+}
+
+model Order {
+  id          Int    @id @default(autoincrement())
+  status      String
+  codigo      String
+  morador     String // create relationship for it
+  colaborador String // create relationship for it 
+  created_at  String // is it string? 
+
+  @@map("orders")
 }
