@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { create } from 'domain'
 const prisma = new PrismaClient()
 async function main() {
 
@@ -11,21 +12,21 @@ async function main() {
 
             // Relationships Instances
             resident: {
-                create: { 
+                create: {
                     name: 'Elizabeth',
                     email: 'elizabetholiveira@prisma.io',
                     password: '12345678',
                     photo_path: '',
                     last_name: 'Oliveira',
-                    cpf : '67893756341',
+                    cpf: '67893756341',
                     cell: '(11) 940393837',
-                    apartment: { 
-                        create: { 
-                            number: '75', 
+                    apartment: {
+                        create: {
+                            number: '75',
                         }
                     }
-                }, 
-                
+                },
+
             },
             collaborator: {
                 create: {
@@ -42,7 +43,7 @@ async function main() {
             },
 
             // Como mocar o rating aqui no seed? 
-            
+
         },
     })
 
@@ -51,17 +52,17 @@ async function main() {
             status: 'Em rota',
             code: '1451',
             resident: {
-                create: { 
+                create: {
                     name: 'Ana Beatriz Lisboa',
                     email: 'anabeatrizlisboa@prisma.io',
                     password: '12345678',
                     photo_path: '',
                     last_name: 'Lisboa',
-                    cpf : '76593701235',
+                    cpf: '76593701235',
                     cell: '(11) 970702327',
-                    apartment: { 
-                        create: { 
-                            number: '26', 
+                    apartment: {
+                        create: {
+                            number: '26',
                         }
                     }
                 }
@@ -89,17 +90,17 @@ async function main() {
             status: 'Avaliado',
             code: '1730',
             resident: {
-                create: { 
+                create: {
                     name: 'Kleber',
                     email: 'kleberlima@prisma.io',
                     password: '7777777',
                     photo_path: '',
                     last_name: 'Lima',
-                    cpf : '40387623431',
+                    cpf: '40387623431',
                     cell: '(11) 993522897',
-                    apartment: { 
-                        create: { 
-                            number: '7', 
+                    apartment: {
+                        create: {
+                            number: '7',
                         }
                     }
                 }
@@ -127,17 +128,17 @@ async function main() {
             status: 'Avaliado',
             code: '1731',
             resident: {
-                create: { 
+                create: {
                     name: 'Augusto',
                     email: 'augustoryu@prisma.io',
                     password: '12345678',
                     photo_path: '',
                     last_name: 'Ryu',
-                    cpf : '26789367325',
+                    cpf: '26789367325',
                     cell: '(11) 998673459',
-                    apartment: { 
-                        create: { 
-                            number: '31', 
+                    apartment: {
+                        create: {
+                            number: '31',
                         }
                     }
                 }
@@ -165,17 +166,17 @@ async function main() {
             status: 'Finalizado',
             code: '2090',
             resident: {
-                create: { 
+                create: {
                     name: 'João Tranquilo',
                     email: 'joaotranquilo@prisma.io',
                     password: '12345678',
                     photo_path: '',
                     last_name: 'Tranquilino',
-                    cpf : '57890345687',
+                    cpf: '57890345687',
                     cell: '(11) 924236908',
-                    apartment: { 
-                        create: { 
-                            number: '106', 
+                    apartment: {
+                        create: {
+                            number: '106',
                         }
                     }
                 }
@@ -203,17 +204,17 @@ async function main() {
             status: 'Finalizado',
             code: '2091',
             resident: {
-                create: { 
+                create: {
                     name: 'Leonardo De',
                     email: 'leonardodesouza@prisma.io',
                     password: '12345678',
                     photo_path: '',
                     last_name: 'Souza',
-                    cpf : '12367895634',
+                    cpf: '12367895634',
                     cell: '(11) 935899756',
-                    apartment: { 
-                        create: { 
-                            number: '90', 
+                    apartment: {
+                        create: {
+                            number: '90',
                         }
                     }
                 }
@@ -234,6 +235,29 @@ async function main() {
             created_at: '29-09-2024',
             description: 'Ifood - Restaurante Sabor Caseiro'
         },
+    })
+
+    await prisma.condominium.create({
+        data: {
+            name: "Residência Das Flores",
+            policies: {
+                create: [
+                    {
+                        title: 'Horário de Entregas',
+                        description: 'Das 8h às 22h'
+                    },
+                    {
+                        title: 'Acesso de Entregadores',
+                        description: 'Somente com autorização prévia'
+                    },
+                    {
+                        title: 'Uso do Elevador de Serviço',
+                        description: 'Obrigatório para todas as entregas'
+                    },
+
+                ]
+            }
+        }
     })
 }
 

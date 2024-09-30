@@ -20,11 +20,23 @@ model Apartement {
   @@map("apartments")
 }
 
+model Condominium {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  // Relationships 
+
+  // One To Many 
+  policies Policies[]
+
+  @@map("condominiuns")
+}
+
 model Collaborator {
   id                    Int    @id @default(autoincrement())
   name                  String
   countDeliveries       Int
-  mediaRating           Float ?
+  mediaRating           Float?
   countRating           Int
   operatingTimeInMonths Int
   tags                  String
@@ -53,28 +65,41 @@ model Order {
   // Relationships 
 
   // One To One 
-  collaboratorId Int          
+  collaboratorId Int
   collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade) // create relationship for it 
 
   rating Rating?
 
   // One To One
-  residentId Int      
+  residentId Int
   resident   Resident @relation(fields: [residentId], references: [id], onDelete: Cascade) // create relationship for it
 
   @@map("orders")
 }
 
+model Policies {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+
+  // Relationships 
+
+  // One To Many 
+  condominiumId Int 
+  condominium Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
+
+}
+
 model Rating {
-  id Int @id @default(autoincrement())
-  ratingNote Int 
+  id              Int     @id @default(autoincrement())
+  ratingNote      Int
   recommendations String?
 
   // Relationships 
 
   // One To One 
-  orderId Int @unique
-  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId Int   @unique
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   // One To Many 
   collaboratorId Int

@@ -3,6 +3,8 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 export async function orderGetController(request: FastifyRequest, reply: FastifyReply) {
     try {
+
+
         const x = await prisma.order.findMany({
             where: {
                 id: { gt: 0 }
@@ -56,6 +58,9 @@ export async function orderGetController(request: FastifyRequest, reply: Fastify
             item.collaborator.mediaRating =  z._avg?.ratingNote == null ? 0 : z._avg?.ratingNote;
 
         }
+
+        // returning polices
+
 
         return reply.status(200).send(x);
     }

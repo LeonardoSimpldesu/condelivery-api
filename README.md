@@ -61,6 +61,32 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 
 ## TABELAS
 
+### ADRESS (-)
+- ID
+- cep
+- logradouro
+- numero
+- bairro
+- cidade
+- estado
+- pais
+- complemento?
+
+### CONDOMINIUM ()
+- ID
+- name
+- ADRESS
+
+### POLICIES ()
+- ID
+- TITLE
+- DESCRIPTION
+
+### BLOCO (-)
+- ID
+- NOME
+- CONDOMINIUM
+
 ### USERS (x)
 - ID
 - email UNIQUE
@@ -72,33 +98,7 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - celular
 - role 
 
-### ADRESS
-- ID
-- cep
-- logradouro
-- numero
-- bairro
-- cidade
-- estado
-- pais
-- complemento?
-
-### CONDOMINIUM
-- ID
-- name
-- ADRESS
-
-### POLICIES
-- ID
-- TITLE
-- DESCRIPTION
-
-### BLOCO
-- ID
-- NOME
-- CONDOMINIUM
-
-### APARTMENT
+### APARTMENT (x)
 - ID
 - NOME
 - BLOCO
@@ -127,8 +127,10 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - COLABORADOR
 - created_at
 
+npx prisma migrate dev 
 
 npx prisma db seed 
+
 npx prisma execute 
 
 Posso tentar criar um prisma client para o Rating. 
