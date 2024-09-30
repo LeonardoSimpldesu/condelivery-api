@@ -136,3 +136,5 @@ httpie
 
 {} --> executa 
 () --> retorna, ou parâmetro.
+
+Avaliado. 

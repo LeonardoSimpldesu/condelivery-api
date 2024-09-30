@@ -86,7 +86,7 @@ async function main() {
 
     await prisma.order.create({
         data: {
-            status: 'Aguardando Finalização',
+            status: 'Avaliado',
             code: '1730',
             resident: {
                 create: { 
@@ -124,7 +124,7 @@ async function main() {
 
     await prisma.order.create({
         data: {
-            status: 'Aguardando Finalização',
+            status: 'Avaliado',
             code: '1731',
             resident: {
                 create: { 

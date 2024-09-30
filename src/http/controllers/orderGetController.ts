@@ -53,7 +53,7 @@ export async function orderGetController(request: FastifyRequest, reply: Fastify
             
 
             item.collaborator.countRating = y
-            item.collaborator.mediaRating =  z._avg?.ratingNote;
+            item.collaborator.mediaRating =  z._avg?.ratingNote == null ? 0 : z._avg?.ratingNote;
 
         }
 
