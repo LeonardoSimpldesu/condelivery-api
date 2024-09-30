@@ -61,33 +61,7 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 
 ## TABELAS
 
-### ADRESS (-)
-- ID
-- cep
-- logradouro
-- numero
-- bairro
-- cidade
-- estado
-- pais
-- complemento?
-
-### CONDOMINIUM ()
-- ID
-- name
-- ADRESS
-
-### POLICIES ()
-- ID
-- TITLE
-- DESCRIPTION
-
-### BLOCO (-)
-- ID
-- NOME
-- CONDOMINIUM
-
-### USERS (x)
+### USERS
 - ID
 - email UNIQUE
 - password_hash
@@ -98,21 +72,47 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - celular
 - role 
 
-### APARTMENT (x)
+### ADRESS
+- ID
+- cep
+- logradouro
+- numero
+- bairro
+- cidade
+- estado
+- pais
+- complemento?
+
+### CONDOMINIUM
+- ID
+- name
+- ADRESS
+
+### POLICIES
+- ID
+- TITLE
+- DESCRIPTION
+
+### BLOCO
+- ID
+- NOME
+- CONDOMINIUM
+
+### APARTMENT
 - ID
 - NOME
 - BLOCO
 
-### COLABORADOR (x)
+### COLABORADOR 
 - VALOR_MENSAL
 - AVALIACAO
 - VALOR_EXCEDENTE
 
-### MORADOR (x)
+### MORADOR
 - APARTMENT
 - CONDOMINIUM
 
-### AVALIACAO (x)
+### AVALIACAO
 - ID
 - MORADOR
 - COLABORADOR
@@ -127,16 +127,4 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - COLABORADOR
 - created_at
 
-npx prisma migrate dev 
-
-npx prisma db seed 
-
-npx prisma execute 
-
-Posso tentar criar um prisma client para o Rating. 
-httpie
-
-{} --> executa 
-() --> retorna, ou parâmetro.
-
-Avaliado. 
+Moquei dados na gambiarra apenas para apresentar no pitch. Aqui estará o relacionamento correto. 

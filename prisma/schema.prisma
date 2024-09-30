@@ -8,22 +8,124 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
+model Apartement {
+  id     Int    @id @default(autoincrement())
+  number String
 
-  @@map("users")
+  // Relationships 
+
+  // One To Many 
+  residents Resident[]
+
+  @@map("apartments")
+}
+
+model Condominium {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  // Relationships 
+
+  // One To Many 
+  policies Policies[]
+
+  @@map("condominiuns")
+}
+
+model Collaborator {
+  id                    Int    @id @default(autoincrement())
+  name                  String
+  countDeliveries       Int
+  mediaRating           Float?
+  countRating           Int
+  operatingTimeInMonths Int
+  tags                  String
+  languages             String
+  local                 String
+  servicesProvided      String
+
+  // Relationships 
+
+  // One To One 
+  order Order[]
+
+  // One To May 
+  ratings Rating[]
+
+  @@map("collaborators")
 }
 
 model Order {
   id          Int    @id @default(autoincrement())
-  status      String
-  codigo      String
-  morador     String // create relationship for it
-  colaborador String // create relationship for it 
+  code        String
   created_at  String // is it string? 
+  description String
+  status      String
+
+  // Relationships 
+
+  // One To One 
+  collaboratorId Int
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade) // create relationship for it 
+
+  rating Rating?
+
+  // One To One
+  residentId Int
+  resident   Resident @relation(fields: [residentId], references: [id], onDelete: Cascade) // create relationship for it
 
   @@map("orders")
+}
+
+model Policies {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+
+  // Relationships 
+
+  // One To Many 
+  condominiumId Int 
+  condominium Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
+
+}
+
+model Rating {
+  id              Int     @id @default(autoincrement())
+  ratingNote      Int
+  recommendations String?
+
+  // Relationships 
+
+  // One To One 
+  orderId Int   @unique
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  // One To Many 
+  collaboratorId Int
+  collaborator   Collaborator @relation(fields: [collaboratorId], references: [id], onDelete: Cascade)
+
+  @@map("ratings")
+}
+
+model Resident {
+  id         Int    @id @default(autoincrement())
+  email      String @unique
+  cell       String
+  cpf        String
+  last_name  String
+  name       String
+  password   String
+  photo_path String
+
+  // Relationships 
+
+  // One To One
+  order Order[]
+
+  // One To Many 
+  apartmentId Int
+  apartment   Apartement @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+
+  @@map("residents")
 }
