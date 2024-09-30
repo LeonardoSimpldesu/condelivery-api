@@ -5,7 +5,7 @@ export async function policiesGetController(request: FastifyRequest, reply: Fast
     try {
 
 
-        const x = await prisma.condominium.findMany({
+        const x = await prisma.condominium.findFirst({
             where: {
                 id: { gt: 0 }
             },
