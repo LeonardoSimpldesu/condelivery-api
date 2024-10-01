@@ -72,20 +72,20 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 - pais
 - complemento?
 
-### CONDOMINIUM ()
+### BLOCO (x)
+- ID
+- NOME
+- CONDOMINIUM
+
+### CONDOMINIUM (x)
 - ID
 - name
 - ADRESS
 
-### POLICIES ()
+### POLICIES (x)
 - ID
 - TITLE
 - DESCRIPTION
-
-### BLOCO (-)
-- ID
-- NOME
-- CONDOMINIUM
 
 ### USERS (x)
 - ID

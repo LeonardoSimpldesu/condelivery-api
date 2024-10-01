@@ -17,25 +17,32 @@ model Apartement {
   // One To Many 
   residents Resident[]
 
+  blockId Int 
+  block Block @relation(fields: [blockId], references: [id], onDelete: Cascade)
+
   @@map("apartments")
 }
 
-model Condominium {
+model Block {
   id   Int    @id @default(autoincrement())
   name String
 
   // Relationships 
 
   // One To Many 
-  policies Policies[]
+  condominiumId Int
+  condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
 
-  @@map("condominiuns")
+  apartemens Apartement []
+
+  @@map("blocks")
 }
 
 model Collaborator {
   id                    Int    @id @default(autoincrement())
   name                  String
   countDeliveries       Int
+  // Esse cara aqui tem que ser calculado ou não? Vantagens e desvantagens. 
   mediaRating           Float?
   countRating           Int
   operatingTimeInMonths Int
@@ -44,6 +51,8 @@ model Collaborator {
   local                 String
   servicesProvided      String
 
+  // active: Boolean (adicionar esse campo para retornar para o front.)
+  // aproveitar atualizar a propriedade apartement
   // Relationships 
 
   // One To One 
@@ -53,6 +62,19 @@ model Collaborator {
   ratings Rating[]
 
   @@map("collaborators")
+}
+
+model Condominium {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  // Relationships 
+
+  // One To Many 
+  blocks   Block[]
+  policies Policies[]
+
+  @@map("condominiuns")
 }
 
 model Order {
@@ -83,11 +105,9 @@ model Policies {
   description String
 
   // Relationships 
-
   // One To Many 
-  condominiumId Int 
-  condominium Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
-
+  condominiumId Int
+  condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
 }
 
 model Rating {
