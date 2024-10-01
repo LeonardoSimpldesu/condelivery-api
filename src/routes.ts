@@ -22,7 +22,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.get('/get-collaborators', collaboratorGetController)
   app.get('/get-collaborator-detail/:id', collaboratorGetDetailController)
 
-  app.get('/get-condominiuns', condominiumGetController)
+  app.get('/get-condominiums', condominiumGetController)
 
   app.get('/get-orders', orderGetController)
 
