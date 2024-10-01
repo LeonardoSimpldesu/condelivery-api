@@ -1,8 +1,10 @@
 import { FastifyInstance } from "fastify";
-import { getCollaboratorDetail } from "./http/controllers/collaborarGetDetailContoller";
+import { collaboratorGetDetailController } from "./http/controllers/collaboratorGetDetailContoller";
+import { collaboratorGetController } from "./http/controllers/collaboratorGetController";
+import { condominiumGetController } from "./http/controllers/condominiumGetController";
 import { orderGetController } from "./http/controllers/orderGetController";
-import { policiesCreateController } from "./http/controllers/policyCreateController";
-import { policiesGetController } from "./http/controllers/policyGetController";
+import { policyCreateController } from "./http/controllers/policyCreateController";
+import { policyGetController } from "./http/controllers/policyGetController";
 import { ratingCreateController } from "./http/controllers/rateCreateController";
 import { residentCreateController } from "./http/controllers/residentCreateController";
 
@@ -17,12 +19,15 @@ export async function appRoutes(app: FastifyInstance) {
     return reply.status(200).send("Server HTTP working!")
   }))
 
-  app.get('/get-collaborator-detail/:id', getCollaboratorDetail)
+  app.get('/get-collaborators', collaboratorGetController)
+  app.get('/get-collaborator-detail/:id', collaboratorGetDetailController)
 
-  app.get('/get-orderS', orderGetController)
+  app.get('/get-condominiuns', condominiumGetController)
 
-  app.get('/get-policies', policiesGetController)
-  app.post('/create-policy', policiesCreateController)
+  app.get('/get-orders', orderGetController)
+
+  app.get('/get-policies', policyGetController)
+  app.post('/create-policy', policyCreateController)
 
   app.post('/create-rate', ratingCreateController)
 

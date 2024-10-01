@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-export async function policiesGetController(request: FastifyRequest, reply: FastifyReply) {
+export async function policyGetController(request: FastifyRequest, reply: FastifyReply) {
     try {
 
 

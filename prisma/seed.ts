@@ -26,7 +26,7 @@ async function main() {
                 create: [
                     {
                         name: "Bloco A",
-                        apartemens: {
+                        apartments: {
                             create: [
                                 {
                                     number: "70",
@@ -57,6 +57,7 @@ async function main() {
                                                                 languages: 'Português',
                                                                 local: 'São Paulo',
                                                                 servicesProvided: 'Sorveteiro; Desenvolvedor;',
+                                                                active: true
                                                             },
                                                         },
                                                     }]
@@ -90,7 +91,8 @@ async function main() {
                                                                 tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
                                                                 languages: 'Português',
                                                                 local: 'São Paulo',
-                                                                servicesProvided: 'Manuntenção; Desenvolvedor;'
+                                                                servicesProvided: 'Manuntenção; Desenvolvedor;',
+                                                                active: true
                                                             },
                                                         },
                                                         created_at: '29-09-2024',
@@ -106,7 +108,7 @@ async function main() {
                     },
                     {
                         name: "Bloco B",
-                        apartemens: {
+                        apartments: {
                             create: [
                                 {
                                     number: "80",
@@ -134,7 +136,8 @@ async function main() {
                                                                 tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
                                                                 languages: 'Português',
                                                                 local: 'São Paulo',
-                                                                servicesProvided: 'Mecânico; Desenvolvedor;'
+                                                                servicesProvided: 'Mecânico; Desenvolvedor;',
+                                                                active: true
                                                             },
                                                         },
                                                         created_at: '29-09-2024',
@@ -205,7 +208,7 @@ async function main() {
                     },
                     {
                         name: "Bloco C",
-                        apartemens: {
+                        apartments: {
                             create: [
                                 {
                                     number: "90",
@@ -233,7 +236,8 @@ async function main() {
                                                                 tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
                                                                 languages: 'Português',
                                                                 local: 'São Paulo',
-                                                                servicesProvided: 'Sorveteiro; Desenvolvedor;'
+                                                                servicesProvided: 'Sorveteiro; Desenvolvedor;',
+                                                                active: true
                                                             },
                                                         },
                                                         created_at: '29-09-2024',
@@ -270,7 +274,8 @@ async function main() {
                                                                 tags: 'Esforçado; Pontual; Simpático; Ótimo papo;',
                                                                 languages: 'Português',
                                                                 local: 'São Paulo',
-                                                                servicesProvided: 'Sorveteiro; Desenvolvedor;'
+                                                                servicesProvided: 'Sorveteiro; Desenvolvedor;',
+                                                                active: true
                                                             },
                                                         },
                                                         created_at: '29-09-2024',

@@ -9,16 +9,23 @@ export async function collaboratorGetController(request: FastifyRequest, reply: 
             where: {
                 id: { gt: 0 }
             },
-            select: { 
-                id: true, 
-                ratings: true, 
+            include: {
+                ratings: true,
                 order: true
             }
         })
-        
-        // data.forEach(item => {
-        //     item.order.
-        // })
+
+        data.forEach(item => {
+            let sumRatings = 0;
+            item?.ratings.forEach(item => {
+                sumRatings += item.ratingNote
+            })
+
+            item && (item.countDeliveries = item?.order.length);
+            item && (item.mediaRating = sumRatings > 0 ?
+                sumRatings / item?.ratings.length : 0)
+            item && (item.countRating = item?.ratings.length)
+        })
 
         return reply.status(200).send(data);
     }

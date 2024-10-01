@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Apartement {
+model Apartment {
   id     Int    @id @default(autoincrement())
   number String
 
@@ -17,8 +17,8 @@ model Apartement {
   // One To Many 
   residents Resident[]
 
-  blockId Int 
-  block Block @relation(fields: [blockId], references: [id], onDelete: Cascade)
+  blockId Int
+  block   Block @relation(fields: [blockId], references: [id], onDelete: Cascade)
 
   @@map("apartments")
 }
@@ -33,13 +33,13 @@ model Block {
   condominiumId Int
   condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
 
-  apartemens Apartement []
+  apartments Apartment[]
 
   @@map("blocks")
 }
 
 model Collaborator {
-  id                    Int    @id @default(autoincrement())
+  id                    Int     @id @default(autoincrement())
   name                  String
   countDeliveries       Int
   // Esse cara aqui tem que ser calculado ou não? Vantagens e desvantagens. 
@@ -50,9 +50,8 @@ model Collaborator {
   languages             String
   local                 String
   servicesProvided      String
+  active                Boolean
 
-  // active: Boolean (adicionar esse campo para retornar para o front.)
-  // aproveitar atualizar a propriedade apartement
   // Relationships 
 
   // One To One 
@@ -72,7 +71,7 @@ model Condominium {
 
   // One To Many 
   blocks   Block[]
-  policies Policies[]
+  policies Policy[]
 
   @@map("condominiuns")
 }
@@ -99,7 +98,7 @@ model Order {
   @@map("orders")
 }
 
-model Policies {
+model Policy {
   id          Int    @id @default(autoincrement())
   title       String
   description String
@@ -108,6 +107,8 @@ model Policies {
   // One To Many 
   condominiumId Int
   condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
+
+  @@map("policies")
 }
 
 model Rating {
@@ -145,7 +146,7 @@ model Resident {
 
   // One To Many 
   apartmentId Int
-  apartment   Apartement @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  apartment   Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
 
   @@map("residents")
 }

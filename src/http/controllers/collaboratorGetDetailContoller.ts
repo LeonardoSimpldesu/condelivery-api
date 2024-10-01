@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-export async function getCollaboratorDetail(request: FastifyRequest, reply: FastifyReply) {
+export async function collaboratorGetDetailController(request: FastifyRequest, reply: FastifyReply) {
     try {
 
         const { id }: any = request.params
@@ -22,7 +22,8 @@ export async function getCollaboratorDetail(request: FastifyRequest, reply: Fast
         })
 
         x && (x.countDeliveries = x?.order.length);
-        x && (x.mediaRating = sumRatings / x?.ratings.length)
+        x && (x.mediaRating =  sumRatings > 0 ?
+            sumRatings / x?.ratings.length : 0)
         x && (x.countRating = x?.ratings.length)
 
         return reply.status(200).send(x);

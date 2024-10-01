@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { FastifyRequest, FastifyReply, FastifySchema } from "fastify";
 import { z } from "zod";
 
-export async function policiesCreateController(request: FastifyRequest, reply: FastifyReply) {
+export async function policyCreateController(request: FastifyRequest, reply: FastifyReply) {
     const userCreateBody = z.object({
         title: z.string().min(1, { message: "O título não pode ser vazio!" }),
         description: z.string().min(1, { message: "A descrição não pode ser vazia!" }),
