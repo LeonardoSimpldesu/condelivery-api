@@ -7,6 +7,7 @@ import { policyCreateController } from "./http/controllers/policyCreateControlle
 import { policyGetController } from "./http/controllers/policyGetController";
 import { ratingCreateController } from "./http/controllers/rateCreateController";
 import { residentCreateController } from "./http/controllers/residentCreateController";
+import { orderGetDetailController } from "./http/controllers/orderGetDetailController";
 
 interface IBody {
   username: string;
@@ -25,6 +26,7 @@ export async function appRoutes(app: FastifyInstance) {
   app.get('/get-condominiums', condominiumGetController)
 
   app.get('/get-orders', orderGetController)
+  app.get('/get-order-detail/:id', orderGetDetailController)
 
   app.get('/get-policies', policyGetController)
   app.post('/create-policy', policyCreateController)

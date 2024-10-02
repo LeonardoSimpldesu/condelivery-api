@@ -8,6 +8,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Address {
+  id           Int    @id @default(autoincrement())
+  // como é logradouro no inglês e que porra é um logradouro que até hoje eu não sei 
+  city         String
+  country      String
+  neighborhood String
+  number       Int // E se tiver letras? 
+  state        String
+  street       String
+  zipCode      String
+
+  // relationship 
+  // one to one 
+  condominium   Condominium?
+  condominiumId Int?
+
+  @@map("address")
+}
+
 model Apartment {
   id     Int    @id @default(autoincrement())
   number String
@@ -68,6 +87,9 @@ model Condominium {
   name String
 
   // Relationships 
+  // one to one 
+  addressId Int     @unique
+  address   Address @relation(fields: [addressId], references: [id], onDelete: Cascade)
 
   // One To Many 
   blocks   Block[]
@@ -76,13 +98,20 @@ model Condominium {
   @@map("condominiuns")
 }
 
-model Order {
-  id          Int    @id @default(autoincrement())
-  code        String
-  created_at  String // is it string? 
-  description String
-  status      String
+enum Status { 
+  EmRota
+  Finalizado
+  Avaliado
+}
 
+model Order {
+  id          Int      @id @default(autoincrement())
+  code        String
+  created_at  DateTime // is it string? 
+  updated_at  DateTime
+  description String
+  status     Status 
+  isEvaluated Boolean
   // Relationships 
 
   // One To One 

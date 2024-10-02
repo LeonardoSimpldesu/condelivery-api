@@ -1,9 +1,21 @@
 import { PrismaClient } from '@prisma/client'
+import { STATUS_CODES } from 'http'
 const prisma = new PrismaClient()
 async function main() {
 
     await prisma.condominium.create({
         data: {
+            address: { 
+                create: { 
+                    city: 'São Paulo', 
+                    country: 'Brasil', 
+                    neighborhood: 'Bela Vista', 
+                    number: 1106, 
+                    state: 'SP', 
+                    street: 'Av. Paulista',
+                    zipCode: '01311000'
+                }
+            },
             name: "Residência Das Flores",
             policies: {
                 create: [
@@ -42,10 +54,12 @@ async function main() {
                                             order: {
                                                 create: [
                                                     {
-                                                        status: 'Em rota',
+                                                        status: 'EmRota',
                                                         code: '1450',
-                                                        created_at: '29-09-2024',
                                                         description: 'Ifood - Restaurante Sabor Caseiro',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         collaborator: {
                                                             create: {
                                                                 name: 'Alyny Plaza',
@@ -79,8 +93,11 @@ async function main() {
                                             order: {
                                                 create: [
                                                     {
-                                                        status: 'Em rota',
+                                                        status: 'EmRota',
                                                         code: '1451',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         collaborator: {
                                                             create: {
                                                                 name: 'Luciano Alves',
@@ -95,7 +112,6 @@ async function main() {
                                                                 active: true
                                                             },
                                                         },
-                                                        created_at: '29-09-2024',
                                                         description: 'Ifood - Restaurante Sabor Caseiro'
                                                     }
                                                 ]
@@ -126,6 +142,9 @@ async function main() {
                                                     {
                                                         status: 'Avaliado',
                                                         code: '1731',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         collaborator: {
                                                             create: {
                                                                 name: 'Marcelo Oliveira',
@@ -140,7 +159,6 @@ async function main() {
                                                                 active: true
                                                             },
                                                         },
-                                                        created_at: '29-09-2024',
                                                         description: 'Ifood - Restaurante Sabor Caseiro', 
                                                         rating: { 
                                                             create: { 
@@ -173,8 +191,10 @@ async function main() {
                                                     {
                                                         status: 'Avaliado',
                                                         code: '1730',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         collaboratorId: 3,
-                                                        created_at: '29-09-2024',
                                                         description: 'Ifood - Restaurante Sabor Caseiro',
                                                         rating: { 
                                                             create: { 
@@ -188,7 +208,9 @@ async function main() {
                                                         status: 'Avaliado',
                                                         code: '1867',
                                                         collaboratorId: 3,
-                                                        created_at: '29-09-2024',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         description: 'Ifood - Restaurante Sabor Caseiro', 
                                                         rating: { 
                                                             create: { 
@@ -226,6 +248,9 @@ async function main() {
                                                     {
                                                         status: 'Finalizado',
                                                         code: '2090',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         collaborator: {
                                                             create: {
                                                                 name: 'Lucas Gomes',
@@ -240,7 +265,6 @@ async function main() {
                                                                 active: true
                                                             },
                                                         },
-                                                        created_at: '29-09-2024',
                                                         description: 'Ifood - Restaurante Sabor Caseiro'
                                                     }
                                                 ]
@@ -264,6 +288,9 @@ async function main() {
                                                     {
                                                         status: 'Finalizado',
                                                         code: '2091',
+                                                        created_at: new Date(),
+                                                        updated_at: new Date(),
+                                                        isEvaluated: false,
                                                         collaborator: {
                                                             create: {
                                                                 name: 'Ricardo Melquior',
@@ -278,7 +305,6 @@ async function main() {
                                                                 active: true
                                                             },
                                                         },
-                                                        created_at: '29-09-2024',
                                                         description: 'Ifood - Restaurante Sabor Caseiro'
                                                     }
                                                 ]
