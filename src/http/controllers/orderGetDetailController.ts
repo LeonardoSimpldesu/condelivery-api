@@ -48,7 +48,7 @@ export async function orderGetDetailController(request: FastifyRequest, reply: F
             }
         }
 
-        return reply.status(200).send(x);
+        return reply.status(200).send(data);
     }
 
     catch (error) {
