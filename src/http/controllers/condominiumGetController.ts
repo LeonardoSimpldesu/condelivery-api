@@ -1,22 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-export async function policiesGetController(request: FastifyRequest, reply: FastifyReply) {
+export async function condominiumGetController(request: FastifyRequest, reply: FastifyReply) {
     try {
 
-
-        const x = await prisma.condominium.findFirst({
+        const data = await prisma.condominium.findFirst({
             where: {
                 id: { gt: 0 }
             },
-            select: {
-                id: true,
-                name: true,
-                policies: true
+            include: {
+                policies: true,
+                blocks: true
             }
         })
 
-        return reply.status(200).send(x);
+        return reply.status(200).send(data);
     }
 
     catch (error) {

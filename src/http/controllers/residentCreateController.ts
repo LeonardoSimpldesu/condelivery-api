@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { FastifyRequest, FastifyReply, FastifySchema } from "fastify";
 import { z } from "zod";
 
-export async function userCreateController(request: FastifyRequest, reply: FastifyReply) {
+export async function residentCreateController(request: FastifyRequest, reply: FastifyReply) {
   const userCreateBody = z.object({
     username: z.string().min(3, { message: 'O nome do usuario deve ter pelo menos 3 caracteres' }),
     email: z.string().email({ message: 'É preciso ser um email valido' }),
