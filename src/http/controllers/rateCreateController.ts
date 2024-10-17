@@ -24,16 +24,43 @@ export async function ratingCreateController(request: FastifyRequest, reply: Fas
             throw new Error('Este pedido não existe!')
         }
 
-        const ratingData = await prisma.rating.create({
-            data: {
-                ratingNote: rating, 
-                recommendations: recommendations, 
-                orderId: orderAlreadyExists.id, 
-                collaboratorId: orderAlreadyExists.collaboratorId
+        const updateOrderAndCreateRating = await prisma.order.update({
+            where:{
+                id:orderAlreadyExists.id
+            },
+            data:{
+                status: 'Avaliado',
+                rating:{
+                    create:{
+                        ratingNote: rating, 
+                        recommendations: recommendations, 
+                        collaboratorId: orderAlreadyExists.collaboratorId
+                    }
+                }
+            },
+            include:{
+                rating: true
             }
         })
 
-        return reply.status(201).send(ratingData);
+        // const ratingData = await prisma.rating.create({
+        //     data: {
+        //         ratingNote: rating, 
+        //         recommendations: recommendations, 
+        //         orderId: orderAlreadyExists.id, 
+        //         collaboratorId: orderAlreadyExists.collaboratorId
+        //     }
+        // })
+        // const updateOrder = await prisma.order.update({
+        //     where:{
+        //         id:orderAlreadyExists.id
+        //     },
+        //     data:{
+        //         status: "Avaliado"
+        //     }
+        // })
+
+        return reply.status(201).send(updateOrderAndCreateRating);
 
     } catch (error) {
         if (error instanceof z.ZodError) {

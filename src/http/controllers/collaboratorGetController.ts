@@ -6,26 +6,33 @@ export async function collaboratorGetController(request: FastifyRequest, reply: 
 
 
         const data = await prisma.collaborator.findMany({
-            where: {
-                id: { gt: 0 }
-            },
             include: {
-                ratings: true,
-                order: true
-            }
-        })
+              ratings: {
+                aggregate: {
+                  _avg: {
+                    ratingNote: true,
+                  },
+                  _count: {
+                    select: {
+                      id: true,
+                    },
+                  },
+                },
+              },
+            },
+          });
 
-        data.forEach(item => {
-            let sumRatings = 0;
-            item?.ratings.forEach(item => {
-                sumRatings += item.ratingNote
-            })
+        // data.forEach(item => {
+        //     let sumRatings = 0;
+        //     item?.ratings.forEach(item => {
+        //         sumRatings += item.ratingNote
+        //     })
 
-            item && (item.countDeliveries = item?.order.length);
-            item && (item.mediaRating = sumRatings > 0 ?
-                sumRatings / item?.ratings.length : 0)
-            item && (item.countRating = item?.ratings.length)
-        })
+        //     item && (item.countDeliveries = item?.order.length);
+        //     item && (item.mediaRating = sumRatings > 0 ?
+        //         sumRatings / item?.ratings.length : 0)
+        //     item && (item.countRating = item?.ratings.length)
+        // })
 
         return reply.status(200).send(data);
     }

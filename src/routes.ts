@@ -9,12 +9,6 @@ import { ratingCreateController } from "./http/controllers/rateCreateController"
 import { residentCreateController } from "./http/controllers/residentCreateController";
 import { orderGetDetailController } from "./http/controllers/orderGetDetailController";
 
-interface IBody {
-  username: string;
-  password: string;
-  gay: string;
-}
-
 export async function appRoutes(app: FastifyInstance) {
   app.get("/", ((request, reply) => {
     return reply.status(200).send("Server HTTP working!")

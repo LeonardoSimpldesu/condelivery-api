@@ -12,7 +12,7 @@ export async function policyCreateController(request: FastifyRequest, reply: Fas
         const { title, description } = userCreateBody.parse(request.body);
 
         // Porque findUnique tá dando ruim
-        const orderAlreadyExists = await prisma.policies.findFirst({
+        const orderAlreadyExists = await prisma.policy.findFirst({
             where: { 
                 title: title
             }
@@ -23,7 +23,7 @@ export async function policyCreateController(request: FastifyRequest, reply: Fas
             throw new Error('Essa política de condomínio já existe!')
         }
 
-        const ratingData = await prisma.policies.create({
+        const ratingData = await prisma.policy.create({
             data: {
                 title: title, 
                 description: description,
