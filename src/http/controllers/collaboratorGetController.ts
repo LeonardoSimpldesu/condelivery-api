@@ -4,7 +4,6 @@ import { FastifyReply, FastifyRequest } from "fastify";
 export async function collaboratorGetController(request: FastifyRequest, reply: FastifyReply) {
     try {
 
-
         const data = await prisma.collaborator.findMany({
             where: {
                 id: { gt: 0 }
@@ -16,6 +15,7 @@ export async function collaboratorGetController(request: FastifyRequest, reply: 
         })
 
         data.forEach(item => {
+
             let sumRatings = 0;
             item?.ratings.forEach(item => {
                 sumRatings += item.ratingNote
@@ -26,6 +26,7 @@ export async function collaboratorGetController(request: FastifyRequest, reply: 
                 sumRatings / item?.ratings.length : 0)
             item && (item.countRating = item?.ratings.length)
         })
+
 
         return reply.status(200).send(data);
     }

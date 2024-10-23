@@ -9,6 +9,9 @@ export async function orderGetController(request: FastifyRequest, reply: Fastify
             where: {
                 id: { gt: 0 }
             },
+            include: { 
+                collaborator: true
+            }
         })
 
         return reply.status(200).send(x);
