@@ -47,8 +47,8 @@ async function main() {
                                             name: 'Elizabeth',
                                             email: 'elizabetholiveira@prisma.io',
                                             password: '12345678',
-                                            photo_path: '',
-                                            last_name: 'Oliveira',
+                                            photoPath: '',
+                                            lastName: 'Oliveira',
                                             cpf: '67893756341',
                                             cell: '(11) 940393837',
                                             order: {
@@ -57,8 +57,8 @@ async function main() {
                                                         status: 'EmRota',
                                                         code: '1450',
                                                         description: 'Ifood - Restaurante Sabor Caseiro',
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         collaborator: {
                                                             create: {
@@ -86,8 +86,8 @@ async function main() {
                                             name: 'Ana Beatriz Lisboa',
                                             email: 'anabeatrizlisboa@prisma.io',
                                             password: '12345678',
-                                            photo_path: '',
-                                            last_name: 'Lisboa',
+                                            photoPath: '',
+                                            lastName: 'Lisboa',
                                             cpf: '76593701235',
                                             cell: '(11) 970702327',
                                             order: {
@@ -95,8 +95,8 @@ async function main() {
                                                     {
                                                         status: 'EmRota',
                                                         code: '1451',
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         collaborator: {
                                                             create: {
@@ -133,8 +133,8 @@ async function main() {
                                             name: 'Kleber',
                                             email: 'kleberlima@prisma.io',
                                             password: '7777777',
-                                            photo_path: '',
-                                            last_name: 'Lima',
+                                            photoPath: '',
+                                            lastName: 'Lima',
                                             cpf: '40387623431',
                                             cell: '(11) 993522897',
                                             order: {
@@ -142,8 +142,8 @@ async function main() {
                                                     {
                                                         status: 'Avaliado',
                                                         code: '1731',
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         collaborator: {
                                                             create: {
@@ -182,8 +182,8 @@ async function main() {
                                             name: 'Augusto',
                                             email: 'augustoryu@prisma.io',
                                             password: '12345678',
-                                            photo_path: '',
-                                            last_name: 'Ryu',
+                                            photoPath: '',
+                                            lastName: 'Ryu',
                                             cpf: '26789367325',
                                             cell: '(11) 998673459',
                                             order: {
@@ -191,8 +191,8 @@ async function main() {
                                                     {
                                                         status: 'Avaliado',
                                                         code: '1730',
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         collaboratorId: 3,
                                                         description: 'Ifood - Restaurante Sabor Caseiro',
@@ -208,8 +208,8 @@ async function main() {
                                                         status: 'Avaliado',
                                                         code: '1867',
                                                         collaboratorId: 3,
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         description: 'Ifood - Restaurante Sabor Caseiro', 
                                                         rating: { 
@@ -239,8 +239,8 @@ async function main() {
                                             name: 'João Tranquilo',
                                             email: 'joaotranquilo@prisma.io',
                                             password: '12345678',
-                                            photo_path: '',
-                                            last_name: 'Tranquilino',
+                                            photoPath: '',
+                                            lastName: 'Tranquilino',
                                             cpf: '57890345687',
                                             cell: '(11) 924236908',
                                             order: {
@@ -248,8 +248,8 @@ async function main() {
                                                     {
                                                         status: 'Finalizado',
                                                         code: '2090',
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         collaborator: {
                                                             create: {
@@ -279,8 +279,8 @@ async function main() {
                                             name: 'Leonardo De',
                                             email: 'leonardodesouza@prisma.io',
                                             password: '12345678',
-                                            photo_path: '',
-                                            last_name: 'Souza',
+                                            photoPath: '',
+                                            lastName: 'Souza',
                                             cpf: '12367895634',
                                             cell: '(11) 935899756',
                                             order: {
@@ -288,8 +288,8 @@ async function main() {
                                                     {
                                                         status: 'Finalizado',
                                                         code: '2091',
-                                                        created_at: new Date(),
-                                                        updated_at: new Date(),
+                                                        createdAt: new Date(),
+                                                        updatedAt: new Date(),
                                                         isEvaluated: false,
                                                         collaborator: {
                                                             create: {

@@ -107,8 +107,8 @@ enum Status {
 model Order {
   id          Int      @id @default(autoincrement())
   code        String
-  created_at  DateTime // is it string? 
-  updated_at  DateTime
+  createdAt  DateTime @map("created_at")
+  updatedAt  DateTime @map("updated_at")
   description String
   status     Status 
   isEvaluated Boolean
@@ -163,10 +163,10 @@ model Resident {
   email      String @unique
   cell       String
   cpf        String
-  last_name  String
+  lastName  String @map("last_name")
   name       String
   password   String
-  photo_path String
+  photoPath String @map("photo_path")
 
   // Relationships 
 

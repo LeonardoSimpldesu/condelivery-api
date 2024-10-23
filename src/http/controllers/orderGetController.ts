@@ -3,12 +3,11 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 export async function orderGetController(request: FastifyRequest, reply: FastifyReply) {
     try {
-
-
         const x = await prisma.order.findMany({
             where: {
                 id: { gt: 0 }
             },
+            
             include: { 
                 collaborator: true
             }
