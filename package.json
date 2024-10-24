@@ -10,7 +10,7 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
-    "build": "tsup tsc", 
+    "build": "tsup src/server.ts",
     "vercel-build": "prisma generate && prisma db push --force-reset && prisma db seed && npm run build",
     "postinstall": "prisma generate",
     "dev": "tsx watch src/server.ts"
