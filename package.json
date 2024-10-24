@@ -11,7 +11,9 @@
   },
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src"
+    "build": "tsup src",
+    "vercel-build": "prisma generate && prisma db push --force-reset && prisma db seed && next build",
+    "postinstall": "prisma generate"
   },
   "author": "",
   "license": "ISC",
