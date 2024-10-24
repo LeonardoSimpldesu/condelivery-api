@@ -1,9 +1,13 @@
 import { FastifyInstance } from "fastify";
-import { userCreateController } from "./http/controllers/userCreateController";
+import { collaboratorGetDetailController } from "./http/controllers/collaboratorGetDetailContoller";
+import { collaboratorGetController } from "./http/controllers/collaboratorGetController";
+import { condominiumGetController } from "./http/controllers/condominiumGetController";
 import { orderGetController } from "./http/controllers/orderGetController";
-import { ratingCreateController } from "./http/controllers/ratingCreateController";
-import { policiesGetController } from "./http/controllers/policiesGetController";
-import { policiesCreateController } from "./http/controllers/policiesCreateController";
+import { policyCreateController } from "./http/controllers/policyCreateController";
+import { policyGetController } from "./http/controllers/policyGetController";
+import { ratingCreateController } from "./http/controllers/rateCreateController";
+import { residentCreateController } from "./http/controllers/residentCreateController";
+import { orderGetDetailController } from "./http/controllers/orderGetDetailController";
 
 interface IBody {
   username: string;
@@ -16,9 +20,18 @@ export async function appRoutes(app: FastifyInstance) {
     return reply.status(200).send("Server HTTP working!")
   }))
 
-  app.post('/create-user', userCreateController)
-  app.post('/create-rating', ratingCreateController)
-  app.get('/get-order', orderGetController)
-  app.get('/get-policies', policiesGetController)
-  app.post('/create-policies', policiesCreateController)
+  app.get('/get-collaborators', collaboratorGetController)
+  app.get('/get-collaborator-detail/:id', collaboratorGetDetailController)
+
+  app.get('/get-condominiums', condominiumGetController)
+
+  app.get('/get-orders', orderGetController)
+  app.get('/get-order-detail/:id', orderGetDetailController)
+
+  app.get('/get-policies', policyGetController)
+  app.post('/create-policy', policyCreateController)
+
+  app.post('/create-rate', ratingCreateController)
+
+  app.post('/create-resident', residentCreateController)
 }

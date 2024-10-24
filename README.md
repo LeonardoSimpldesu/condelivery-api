@@ -63,29 +63,29 @@ Em resumo, o Condelivery é mais do que um sistema de entregas; é uma ferrament
 
 ### ADRESS (-)
 - ID
-- cep
-- logradouro
-- numero
-- bairro
-- cidade
-- estado
-- pais
-- complemento?
+- cep (cep)
+- logradouro (?)
+- numero (number)
+- bairro (neighborhood)
+- cidade (city)
+- estado (state)
+- pais (country)
+- complemento (?)
 
-### CONDOMINIUM ()
+### BLOCO (x)
+- ID
+- NOME
+- CONDOMINIUM
+
+### CONDOMINIUM (x)
 - ID
 - name
 - ADRESS
 
-### POLICIES ()
+### POLICIES (x)
 - ID
 - TITLE
 - DESCRIPTION
-
-### BLOCO (-)
-- ID
-- NOME
-- CONDOMINIUM
 
 ### USERS (x)
 - ID

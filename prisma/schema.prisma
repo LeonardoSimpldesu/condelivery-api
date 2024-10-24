@@ -8,7 +8,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Apartement {
+model Address {
+  id           Int    @id @default(autoincrement())
+  // como é logradouro no inglês e que porra é um logradouro que até hoje eu não sei 
+  city         String
+  country      String
+  neighborhood String
+  number       Int // E se tiver letras? 
+  state        String
+  street       String
+  zipCode      String
+
+  // relationship 
+  // one to one 
+  condominium   Condominium?
+  condominiumId Int?
+
+  @@map("address")
+}
+
+model Apartment {
   id     Int    @id @default(autoincrement())
   number String
 
@@ -17,25 +36,32 @@ model Apartement {
   // One To Many 
   residents Resident[]
 
+  blockId Int
+  block   Block @relation(fields: [blockId], references: [id], onDelete: Cascade)
+
   @@map("apartments")
 }
 
-model Condominium {
+model Block {
   id   Int    @id @default(autoincrement())
   name String
 
   // Relationships 
 
   // One To Many 
-  policies Policies[]
+  condominiumId Int
+  condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
 
-  @@map("condominiuns")
+  apartments Apartment[]
+
+  @@map("blocks")
 }
 
 model Collaborator {
-  id                    Int    @id @default(autoincrement())
+  id                    Int     @id @default(autoincrement())
   name                  String
   countDeliveries       Int
+  // Esse cara aqui tem que ser calculado ou não? Vantagens e desvantagens. 
   mediaRating           Float?
   countRating           Int
   operatingTimeInMonths Int
@@ -43,6 +69,7 @@ model Collaborator {
   languages             String
   local                 String
   servicesProvided      String
+  active                Boolean
 
   // Relationships 
 
@@ -55,13 +82,36 @@ model Collaborator {
   @@map("collaborators")
 }
 
-model Order {
-  id          Int    @id @default(autoincrement())
-  code        String
-  created_at  String // is it string? 
-  description String
-  status      String
+model Condominium {
+  id   Int    @id @default(autoincrement())
+  name String
 
+  // Relationships 
+  // one to one 
+  addressId Int     @unique
+  address   Address @relation(fields: [addressId], references: [id], onDelete: Cascade)
+
+  // One To Many 
+  blocks   Block[]
+  policies Policy[]
+
+  @@map("condominiuns")
+}
+
+enum Status { 
+  EmRota
+  Finalizado
+  Avaliado
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  code        String
+  createdAt  DateTime @map("created_at")
+  updatedAt  DateTime @map("updated_at")
+  description String
+  status     Status 
+  isEvaluated Boolean
   // Relationships 
 
   // One To One 
@@ -77,17 +127,17 @@ model Order {
   @@map("orders")
 }
 
-model Policies {
+model Policy {
   id          Int    @id @default(autoincrement())
   title       String
   description String
 
   // Relationships 
-
   // One To Many 
-  condominiumId Int 
-  condominium Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
+  condominiumId Int
+  condominium   Condominium @relation(fields: [condominiumId], references: [id], onDelete: Cascade)
 
+  @@map("policies")
 }
 
 model Rating {
@@ -113,10 +163,10 @@ model Resident {
   email      String @unique
   cell       String
   cpf        String
-  last_name  String
+  lastName  String @map("last_name")
   name       String
   password   String
-  photo_path String
+  photoPath String @map("photo_path")
 
   // Relationships 
 
@@ -125,7 +175,7 @@ model Resident {
 
   // One To Many 
   apartmentId Int
-  apartment   Apartement @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
+  apartment   Apartment @relation(fields: [apartmentId], references: [id], onDelete: Cascade)
 
   @@map("residents")
 }
