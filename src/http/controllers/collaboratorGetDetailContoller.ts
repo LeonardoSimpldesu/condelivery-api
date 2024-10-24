@@ -4,6 +4,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 export async function collaboratorGetDetailController(request: FastifyRequest, reply: FastifyReply) {
     try {
 
+        let returnData;
         const { id }: any = request.params
 
         const x = await prisma.collaborator.findFirst({
@@ -22,11 +23,20 @@ export async function collaboratorGetDetailController(request: FastifyRequest, r
         })
 
         x && (x.countDeliveries = x?.order.length);
-        x && (x.mediaRating =  sumRatings > 0 ?
+        x && (x.mediaRating = sumRatings > 0 ?
             sumRatings / x?.ratings.length : 0)
         x && (x.countRating = x?.ratings.length)
 
-        return reply.status(200).send(x);
+        const servicesProvidedArray = x?.servicesProvided.split(";")
+            .map(services => services.trim()
+            )
+        returnData = {
+            ...x,
+            servicesProvided: servicesProvidedArray?.slice(0, servicesProvidedArray?.length - 1)
+        }
+
+
+        return reply.status(200).send(returnData);
     }
 
     catch (error) {
