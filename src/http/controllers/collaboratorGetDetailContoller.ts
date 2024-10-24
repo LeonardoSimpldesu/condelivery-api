@@ -7,7 +7,7 @@ export async function collaboratorGetDetailController(request: FastifyRequest, r
         let returnData;
         const { id }: any = request.params
 
-        const x = await prisma.collaborator.findFirst({
+        const data = await prisma.collaborator.findFirst({
             where: {
                 id: parseInt(id)
             },
@@ -18,21 +18,27 @@ export async function collaboratorGetDetailController(request: FastifyRequest, r
         })
 
         let sumRatings = 0;
-        x?.ratings.forEach(item => {
+        data?.ratings.forEach(item => {
             sumRatings += item.ratingNote
         })
 
-        x && (x.countDeliveries = x?.order.length);
-        x && (x.mediaRating = sumRatings > 0 ?
-            sumRatings / x?.ratings.length : 0)
-        x && (x.countRating = x?.ratings.length)
+        data && (data.countDeliveries = data?.order.length);
+        data && (data.mediaRating = sumRatings > 0 ?
+            sumRatings / data?.ratings.length : 0)
+        data && (data.countRating = data?.ratings.length)
 
-        const servicesProvidedArray = x?.servicesProvided.split(";")
+        const servicesProvidedArray = data?.servicesProvided.split(";")
             .map(services => services.trim()
             )
+        
+        const tagsArray = data?.tags.split(";")
+        .map(tag => tag.trim()
+        )
+        
         returnData = {
-            ...x,
-            servicesProvided: servicesProvidedArray?.slice(0, servicesProvidedArray?.length - 1)
+            ...data,
+            servicesProvided: servicesProvidedArray?.slice(0, servicesProvidedArray?.length - 1),
+            tags: tagsArray?.slice(0, tagsArray?.length - 1),
         }
 
 

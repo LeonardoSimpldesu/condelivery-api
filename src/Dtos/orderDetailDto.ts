@@ -23,7 +23,7 @@ export type TOrderDetails = {
             country: string
             neighborhood: string
             state: string
-            cep: string
+            zipCode: string
             number: number
         }
     }

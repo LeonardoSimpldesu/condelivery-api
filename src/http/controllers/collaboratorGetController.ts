@@ -35,9 +35,12 @@ export async function collaboratorGetController(request: FastifyRequest, reply: 
         returnData = data.map((collaborator) => {
             const servicesProvidedArray = collaborator.servicesProvided.split(";")
             .map(services => services.trim())
+            const tagsArray = collaborator.tags.split(";")
+            .map(tag => tag.trim())
             
             return {
                 ...collaborator,
+                tags: tagsArray.slice(0, tagsArray.length - 1),
                 servicesProvided: servicesProvidedArray.slice(0, servicesProvidedArray.length - 1)
             }
         })

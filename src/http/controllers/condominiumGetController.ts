@@ -9,6 +9,7 @@ export async function condominiumGetController(request: FastifyRequest, reply: F
                 id: { gt: 0 }
             },
             include: {
+                address: true,
                 policies: true,
                 blocks: true
             }
