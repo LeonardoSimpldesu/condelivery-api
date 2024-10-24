@@ -1,19 +1,32 @@
 import { app } from "./app"
 import { env } from "./env";
 
-
-if (process.env.NODE_ENV !== 'production') {
-  app
-  .listen({
-    host: "0.0.0.0",
-    port: env.PORT,
-  })
-  .then(() => {
-    console.log("✅ HTTP Server Running!");
-  });
+  // Handler específico para Vercel
+export default async function handler(request: any, response: any) {
+  try {
+    await app.ready()
+    app.server.emit('request', request, response)
+  } catch (error) {
+    response.status(500).send({ error: 'Internal Server Error' })
+  }
 }
 
-  export default async function handler(req: any, res: any) {
-    await app.ready()
-    app.server.emit('request', req, res)
+// Para desenvolvimento local
+if (process.env.NODE_ENV !== 'production') {
+  const start = async () => {
+    try {
+      app
+      .listen({
+        host: "0.0.0.0",
+        port: env.PORT,
+      })
+      .then(() => {
+        console.log("✅ HTTP Server Running!");
+      });
+    } catch (err) {
+      app.log.error(err)
+      process.exit(1)
+    }
   }
+  start()
+}
