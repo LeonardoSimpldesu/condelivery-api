@@ -12,7 +12,6 @@ export async function ratingCreateController(request: FastifyRequest, reply: Fas
     try {
         const { order_code, rating, recommendations } = userCreateBody.parse(request.body);
 
-        // Porque findUnique tá dando ruim
         const orderAlreadyExists = await prisma.order.findFirst({
             where: { 
                 code: order_code
